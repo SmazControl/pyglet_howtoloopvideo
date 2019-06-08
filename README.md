@@ -5,7 +5,7 @@ pyglet_video2.py
 
 Loop video by store image data from first round to array
 
-# Alternative way use moviePy 
+# Alternative way use moviePy on Pygame
 
 moviePy.py
 
