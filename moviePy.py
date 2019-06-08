@@ -11,6 +11,15 @@ import pygame,os,time
 import numpy as np
 import threading
 
+# Define some colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BLUE = (0, 0, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+
+PI = 3.141592653
+
 pygame.display.set_caption('Hello World!')
 
 clip = VideoFileClip(os.path.join("Star_Trim.mp4"))
@@ -30,14 +39,18 @@ audiothread.daemon=True
 audiothread.start()
 
 pygame.init()
-screen = pygame.display.set_mode([600,400])
+font0 = pygame.font.SysFont('Calibri', 16, True, False)
+screen = pygame.display.set_mode([640,400])
 pygame.display.set_caption("Video in Pygame!")
 done = False
 clock = pygame.time.Clock()
 sec = time.time()
 while not done:
    for event in pygame.event.get():  # User did something
-      if event.type == pygame.KEYDOWN:
+      if event.type == pygame.QUIT:
+         done = True  # Flag that we are done so we exit this loop
+         break              
+      elif event.type == pygame.KEYDOWN:
          if event.key == pygame.K_ESCAPE or event.unicode == 'q':
             done = True  # Flag that we are done so we exit this loop
             break
@@ -55,11 +68,11 @@ while not done:
                                audioFlag, videoFlag))
       audiothread.daemon=True
       audiothread.start()
-
-
-
-
+   screen.fill(0)
    screen.blit(video, [0, 0])
+   p_time = font0.render(str(second-sec),True,WHITE)   
+   screen.blit(p_time,[20,380])  
+   
    pygame.display.flip()
    clock.tick(30) 
 pygame.quit()
