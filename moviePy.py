@@ -25,7 +25,7 @@ pygame.display.set_caption('Hello World!')
 clip = VideoFileClip(os.path.join("Star_Trim.mp4"))
 
 
-audio_fps = 5000
+audio_fps = 10000
 audio_buffersize = 4000
 audio_nbytes = 2
 audioFlag = 1
@@ -76,3 +76,4 @@ while not done:
    pygame.display.flip()
    clock.tick(30) 
 pygame.quit()
+exit(0)
